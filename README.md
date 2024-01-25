@@ -2,6 +2,25 @@
 This Repository is a prediction endpoint for Reverse Image Search Engine. With the use of gitHub actions 
 I have configured CI-CD on the main branch. If any changes happens in Main branch it will deploy it on ec2 instance.
 
+```
+git clone https://github.com/midofemi/search-engine-prediction-endpoint.git
+```
+
+### Create conda environment
+```
+conda create -p ./env python=3.9 -y
+```
+
+### Activate Conda environment
+```
+conda activate env/
+```
+
+### Install requirements
+```
+pip install -r requirements.txt
+```
+
 ## Architectures 
 ![EndpointArchitecture](https://user-images.githubusercontent.com/40850370/194845911-ea1b68f5-22db-4190-ab94-eca46f6a9d37.png)
 ![Endpoint](https://user-images.githubusercontent.com/40850370/194845906-fc28aeb7-c2b2-4524-8814-4192cd5311bc.png)
