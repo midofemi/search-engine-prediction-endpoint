@@ -5,7 +5,7 @@ import torch
 
 class NeuralNet(nn.Module):
     """
-    Neural Network: Replica of the neural network used while training.
+    Neural Network: Replica of the neural network used while training. Same Model
     """
     def __init__(self):
         super().__init__()

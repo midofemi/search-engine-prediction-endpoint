@@ -5,7 +5,9 @@ import json
 
 class CustomAnnoy(AnnoyIndex):
     """
-    Inherits AnnoyIndex: The save and load functions have been modified according to the website needs.
+    Inherits AnnoyIndex: The save and load functions have been modified according to the website needs. This is the same ANN we used in
+    search-engine-training-endpoint. Only modification to the real ANN class written by Spotify is our load functions. We are basically saying
+    load our embeddings and labels as well
     """
     def __init__(self, f: int, metric: Literal["angular", "euclidean", "manhattan", "hamming", "dot"]):
         super().__init__(f, metric)
@@ -23,7 +25,8 @@ class CustomAnnoy(AnnoyIndex):
 
     def load(self, fn: str, prefault: bool = ...):
         """
-        Responsible for loading .ann and .json files saved by save method.
+        Responsible for loading .ann and .json files saved by save method. This was the only modification made to the original ANN class
+        written by spotify
         """
         super().load(fn)
         path = fn.replace(".ann", ".json")

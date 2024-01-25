@@ -6,7 +6,7 @@ import os
 
 class StorageConnection:
     """
-    Created connection with S3 bucket using boto3 api to fetch the model from Repository.
+    Created connection with S3 bucket using boto3 api to fetch the models (CNN and ANN) from Repository.
     """
     def __init__(self):
         self.config = AwsStorage()
