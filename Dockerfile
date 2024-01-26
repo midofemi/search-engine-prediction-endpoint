@@ -1,24 +1,32 @@
-# Stage 1: Build dependencies
-FROM python:3.9-slim as builder
+# Builder stage
+FROM python:3.9 as builder
 
-RUN apt-get update && apt-get install -y build-essential
+# Set the working directory
+WORKDIR /build
 
-WORKDIR /searchengine
+# Install build dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip \
+    && pip install --user -r requirements.txt
 
-COPY Search_Engine/search-engine-prediction-endpoint/requirements.txt .
-
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
-
-# Stage 2: Runtime environment
+# Final stage
 FROM python:3.9-slim
 
+# Copy installed packages from the builder stage
+COPY --from=builder /root/.local /root/.local
+
+# Set the working directory
 WORKDIR /searchengine
 
-COPY --from=builder /searchengine/.venv /searchengine/.venv
+# Copy the application code
 COPY . .
 
-ENV PATH="/searchengine/.venv/bin:$PATH"
+# Make sure scripts in .local are usable:
+ENV PATH=/root/.local/bin:$PATH
 
+# Expose the port the app runs on
 EXPOSE 8080
 
-CMD ["python", "app.py"]
+# Run the application
+CMD ["python","app.py"]
+
