@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y build-essential
 
 WORKDIR /searchengine
 
-COPY requirements.txt .
+COPY Search_Engine/search-engine-prediction-endpoint/requirements.txt .
+
 RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 
 # Stage 2: Runtime environment
