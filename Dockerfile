@@ -4,10 +4,19 @@ FROM python:3.9 as builder
 # Set the working directory
 WORKDIR /build
 
-# Install build dependencies
+# Copy the Python project files first
+COPY setup.py .
 COPY requirements.txt .
+
+# Install the project dependencies
 RUN pip install --upgrade pip \
     && pip install --user -r requirements.txt
+
+# Copy the rest of the project files
+COPY . .
+
+# Build/install the project
+RUN pip install --user .
 
 # Final stage
 FROM python:3.9-slim
@@ -29,4 +38,5 @@ EXPOSE 8080
 
 # Run the application
 CMD ["python","app.py"]
+
 
