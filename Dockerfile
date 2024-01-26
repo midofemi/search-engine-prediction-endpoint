@@ -3,20 +3,20 @@ FROM python:3.9-slim as builder
 
 RUN apt-get update && apt-get install -y build-essential
 
-WORKDIR /app
+WORKDIR /searchengine
 
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
 
 # Stage 2: Runtime environment
 FROM python:3.9-slim
 
-WORKDIR /app
+WORKDIR /searchengine
 
-COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder /searchengine/.venv /searchengine/.venv
 COPY . .
 
-ENV PATH="/app/.venv/bin:$PATH"
+ENV PATH="/searchengine/.venv/bin:$PATH"
 
 EXPOSE 8080
 
