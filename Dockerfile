@@ -1,4 +1,4 @@
-FROM python:3.9.14-slim-bullseye
+FROM python:3.9-slim
 COPY . /searchengine
 
 WORKDIR /searchengine
