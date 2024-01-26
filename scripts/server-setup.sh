@@ -29,7 +29,7 @@ tar xzf ./actions-runner-linux-x64-2.298.2.tar.gz
 ./config.sh --url https://github.com/ketangangal/SearchEngine-DataCollection --token <mention-you-token-here>
 ./run.sh
 
-## Add Github runner as a service. Automatic self-hosted start up
+## Add Github runner as a service. Automatic self-hosted start up.
 sudo ./svc.sh install
 sudo ./svc.sh start
 sudo ./svc.sh status
